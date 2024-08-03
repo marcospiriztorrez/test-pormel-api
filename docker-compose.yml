@@ -1,0 +1,41 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7035:7035"
+    environment:
+      DB_HOST: postgres
+      DB_USER: pormel
+      DB_PASSWORD: pormel1234
+      DB_NAME: test_pormel
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: test_pormel
+      POSTGRES_USER: pormel
+      POSTGRES_PASSWORD: pormel1234
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - app-network
+
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    driver: bridge
