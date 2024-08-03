@@ -49,5 +49,9 @@ El proyecto esta enteramente dockerizado, con su Dockerfile y docker-compose.yml
 ```bash
 $ docker-compose up
 ```
+
+#### Postman
+Se deja en la raiz del proyecto el archivo 'pormel.postman_collection.json' para pueda ser importado en postman y hacer todas las pruebas necesarias.
+
 ## License
 Nest is [MIT licensed](LICENSE).

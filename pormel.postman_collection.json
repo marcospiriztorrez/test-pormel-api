@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "3bdd2f11-74a4-4b02-8073-e90f08451604",
+		"name": "pormel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32098754"
+	},
+	"item": [
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Pepe\",\n  \"isbn\": \"no se que es un isbn\",\n  \"year\": 2018,\n  \"pages\": 128,\n  \"publisherId\": \"a65be099-4df0-432c-b147-3484bbb1651f\",\n  \"authorsIds\": [\n    \"31b55a7b-f532-4d8f-a45c-51da42f6e360\",\n    \"f2167de2-b600-4cab-acf9-405e6e35eed9\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7035/pormel/api/v1/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7035",
+							"path": [
+								"pormel",
+								"api",
+								"v1",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7035/pormel/api/v1/book?page=1&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7035",
+							"path": [
+								"pormel",
+								"api",
+								"v1",
+								"book"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": "pormel",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7035/pormel/api/v1/book/4f75d7bc-2adb-4642-b38f-7fd8d05d58b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7035",
+							"path": [
+								"pormel",
+								"api",
+								"v1",
+								"book",
+								"4f75d7bc-2adb-4642-b38f-7fd8d05d58b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-by-id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Pepe\",\n  \"isbn\": \"no se que es un isbn\",\n  \"year\": 2018,\n  \"pages\": 128,\n  \"publisherId\": \"a65be099-4df0-432c-b147-3484bbb1651f\",\n  \"authorsIds\": [\n    \"31b55a7b-f532-4d8f-a45c-51da42f6e360\",\n    \"f2167de2-b600-4cab-acf9-405e6e35eed9\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7035/pormel/api/v1/book/4f75d7bc-2adb-4642-b38f-7fd8d05d58b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7035",
+							"path": [
+								"pormel",
+								"api",
+								"v1",
+								"book",
+								"4f75d7bc-2adb-4642-b38f-7fd8d05d58b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-by-id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Pepe Actualizado\",\n  \"isbn\": \"no se que es un isbn\",\n  \"year\": 2018,\n  \"pages\": 128,\n  \"publisherId\": \"a65be099-4df0-432c-b147-3484bbb1651f\",\n  \"authorsIds\": [\n    \"31b55a7b-f532-4d8f-a45c-51da42f6e360\",\n    \"f2167de2-b600-4cab-acf9-405e6e35eed9\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7035/pormel/api/v1/book/109475c8-f7c3-4d99-8dbe-06df42f2b0a5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7035",
+							"path": [
+								"pormel",
+								"api",
+								"v1",
+								"book",
+								"109475c8-f7c3-4d99-8dbe-06df42f2b0a5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "health-check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7035/pormel/api/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7035",
+					"path": [
+						"pormel",
+						"api",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
