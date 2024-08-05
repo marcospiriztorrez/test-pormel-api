@@ -1,21 +1,22 @@
-FROM --platform=linux/amd64 node:22.1.0-alpine3.19 as deps
+FROM --platform=linux/amd64 node:22.1.0-alpine3.19 AS deps
 WORKDIR /app
-
 COPY package.json package-lock.json ./
 RUN npm install --frozen-lockfile
 
-FROM --platform=linux/amd64 node:22.1.0-alpine3.19 as builder
+FROM --platform=linux/amd64 node:22.1.0-alpine3.19 AS builder
 WORKDIR /app
-
 COPY --from=deps /app/node_modules ./node_modules
-
 COPY . .
+RUN npm run build
 
-FROM --platform=linux/amd64 node:22.1.0-alpine3.19 as runner
+RUN ls -la /app/dist/src
+
+FROM --platform=linux/amd64 node:22.1.0-alpine3.19 AS runner
 WORKDIR /app
-
 COPY package.json package-lock.json ./
-RUN npm install --prod
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 
-CMD ["node", "dist/main"]
+RUN ls -la /app/dist/src
+
+CMD ["node", "dist/src/main"]

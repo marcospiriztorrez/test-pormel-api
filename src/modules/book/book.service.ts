@@ -29,11 +29,21 @@ export class BookService extends ResponseFormatter {
       let authors: AuthorEntity[] = [];
       for await (const authorId of createBookDto.authorsIds) {
         let author = await this.authorService.findOne(authorId);
+        if (!author) {
+          throw new NotFoundException(
+            HttpMessages.AUTHOR_NOT_FOUND,
+          );
+        }
         authors.push(author);
       }
 
       const publisher = await this.publisherService.findOne(createBookDto.publisherId);
-      
+      if (!publisher) {
+        throw new NotFoundException(
+          HttpMessages.PUBLISHER_NOT_FOUND,
+        );
+      }
+
       const book = this.bookRepository.create({
         ...createBookDto,
         authors,
@@ -145,6 +155,11 @@ export class BookService extends ResponseFormatter {
       updateBookDto.publisherId != book.publisher.id
     ) {
       const publisher = await this.publisherService.findOne(updateBookDto.publisherId);
+      if (!publisher) {
+        throw new NotFoundException(
+          HttpMessages.PUBLISHER_NOT_FOUND,
+        );
+      }
       book.publisher = publisher;
     }
 
@@ -152,6 +167,11 @@ export class BookService extends ResponseFormatter {
       let authors: AuthorEntity[] = [];
       for await (const authorId of updateBookDto.authorsIds) {
         let author = await this.authorService.findOne(authorId);
+        if (!author) {
+          throw new NotFoundException(
+            HttpMessages.AUTHOR_NOT_FOUND,
+          );
+        }
         authors.push(author);
       }
       book.authors = authors;

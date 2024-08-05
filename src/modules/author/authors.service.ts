@@ -15,4 +15,8 @@ export class AuthorService {
       where: { id },
     });
   }
+
+  async findAll(): Promise<AuthorEntity[]> {
+    return await this.authorRepository.find();
+  }
 }

@@ -10,6 +10,10 @@ export class PublisherService {
     private readonly publisherRepository: Repository<PublisherEntity>,
   ) {}
 
+  async findAll(): Promise<PublisherEntity[]> {
+    return await this.publisherRepository.find();
+  }
+
   async findOne(id: string): Promise<PublisherEntity> {
     return await this.publisherRepository.findOne({
       where: { id },

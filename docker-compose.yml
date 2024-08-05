@@ -10,6 +10,8 @@ services:
       DB_USER: pormel
       DB_PASSWORD: pormel1234
       DB_NAME: test_pormel
+      PORT: 7035
+      ENV: development
     depends_on:
       - postgres
     restart: unless-stopped
@@ -30,6 +32,19 @@ services:
       - db-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
     networks:
       - app-network
 
