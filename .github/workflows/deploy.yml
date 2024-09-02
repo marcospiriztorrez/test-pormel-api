@@ -23,11 +23,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t pormel.azurecr.io/pormel:test-action .
+          docker build -t pormel.azurecr.io/pormel:test-action-1.1 .
 
       - name: Push Docker image to ACR
         run: |
-          docker push pormel.azurecr.io/pormel:test-action
+          docker push pormel.azurecr.io/pormel:test-action-1.1
 
       - name: Azure Login
         uses: azure/login@v1
