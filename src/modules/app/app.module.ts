@@ -13,20 +13,20 @@ import { PublisherModule } from '../publisher/publisher.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-			validationSchema: ConfigValidationSchema,
-			validate: (config) => ConfigValidationSchema.parse(config),
-			isGlobal: true,
-			load: [ENV],
-		}),
+		validationSchema: ConfigValidationSchema,
+		validate: (config) => ConfigValidationSchema.parse(config),
+		isGlobal: true,
+		load: [ENV],
+	}),
     TypeOrmModule.forRootAsync({
-			useFactory: async () => ({
-				...AppDataSource.options,
-				autoLoadEntities: true,
-			}),
+		useFactory: async () => ({
+			...AppDataSource.options,
+			autoLoadEntities: true,
 		}),
-		BookModule,
-		AuthorModule,
-		PublisherModule,
+	}),
+	BookModule,
+	AuthorModule,
+	PublisherModule,
   ],
   controllers: [AppController],
   providers: [AppService],
