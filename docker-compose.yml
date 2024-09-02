@@ -12,31 +12,9 @@ services:
       DB_NAME: test_pormel
       PORT: 3001
       ENV: development
-    depends_on:
-      - postgres
-    restart: unless-stopped
-    volumes:
-      - .:/app
-    networks:
-      - app-network
-
-  postgres:
-    image: postgres:latest
-    container_name: postgres_db
     restart: always
-    environment:
-      POSTGRES_DB: test_pormel
-      POSTGRES_USER: pormel
-      POSTGRES_PASSWORD: pormel1234
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
     networks:
       - app-network
-      
-volumes:
-  db-data:
 
 networks:
   app-network:
