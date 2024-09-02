@@ -3,8 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigType } from '@nestjs/config';
 import { ConfigValidationSchema } from '../../config/env/config-schema-vars';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppDataSource } from '../../config/database/data-source';
 import ENV from '../../config/env/env';
 import { BookModule } from '../book/book.module';
 import { AuthorModule } from '../author/authors.module';
@@ -17,12 +15,6 @@ import { PublisherModule } from '../publisher/publisher.module';
 		validate: (config) => ConfigValidationSchema.parse(config),
 		isGlobal: true,
 		load: [ENV],
-	}),
-    TypeOrmModule.forRootAsync({
-		useFactory: async () => ({
-			...AppDataSource.options,
-			autoLoadEntities: true,
-		}),
 	}),
 	BookModule,
 	AuthorModule,
