@@ -17,4 +17,4 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 7035
 
-CMD ["node", "dist/main"]
+CMD ["node", "dist/src/main"]
