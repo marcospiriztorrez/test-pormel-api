@@ -19,15 +19,18 @@ jobs:
 
       - name: Log in to Azure Container Registry
         run: |
-          docker login pormel.azurecr.io -u ${{ secrets.AZURE_ACR_USERNAME }} -p ${{ secrets.AZURE_ACR_PASSWORD }}
+          docker login pormel.azurecr.io
+        with: 
+          - username: pormel
+          - password: xJ2/dVoODkqNphVOUjbPwO3NIhvaaElengJUg26xFr+ACRBiFoWk
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.AZURE_ACR_LOGIN_SERVER }}/pormel:${{ github.sha }} .
+          docker build -t pormel.azurecr.io/pormel:test-action .
 
       - name: Push Docker image to ACR
         run: |
-          docker push ${{ secrets.AZURE_ACR_LOGIN_SERVER }}/pormel:${{ github.sha }}
+          docker push pormel.azurecr.io/pormel:test-action
 
       - name: Azure Login
         uses: azure/login@v1
@@ -39,8 +42,8 @@ jobs:
           az webapp config container set \
             --name pormel-docker \
             --resource-group full \
-            --docker-custom-image-name ${{ secrets.AZURE_ACR_LOGIN_SERVER }}/pormel:${{ github.sha }} \
-            --docker-registry-server-url https://${{ secrets.AZURE_ACR_LOGIN_SERVER }}
+            --docker-custom-image-name pormel.azurecr.io/pormel:test-action \
+            --docker-registry-server-url https://pormel.azurecr.io
 
       - name: Restart Azure Web App
         run: |
