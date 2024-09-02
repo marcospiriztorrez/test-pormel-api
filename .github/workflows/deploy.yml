@@ -20,7 +20,7 @@ jobs:
       - name: Log in to Azure Container Registry
         run: |
           docker login pormel.azurecr.io -u pormel -p xJ2/dVoODkqNphVOUjbPwO3NIhvaaElengJUg26xFr+ACRBiFoWk
-          
+
       - name: Build Docker image
         run: |
           docker build -t pormel.azurecr.io/pormel:test-action .
@@ -32,7 +32,19 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          creds: |
+            {
+              "clientId": "fdfb88be-4122-4773-b3e8-5b2f51ed480d",
+              "clientSecret": "esD8Q~DpQo1-DwDaPPmBJIc5kwBdKbw5eIqYzdkq",
+              "subscriptionId": "47874bfe-e8c3-46c9-b7f9-12a98e7e0554",
+              "tenantId": "aef7b9dd-3bc2-453e-85e2-86c46aaf68ee",
+              "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+              "resourceManagerEndpointUrl": "https://management.azure.com/",
+              "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+              "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+              "galleryEndpointUrl": "https://gallery.azure.com/",
+              "managementEndpointUrl": "https://management.core.windows.net/"
+            }
 
       - name: Deploy to Azure Web App
         run: |
