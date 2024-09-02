@@ -51,7 +51,7 @@ jobs:
           az webapp config container set \
             --name pormel-docker \
             --resource-group full \
-            --docker-custom-image-name pormel.azurecr.io/pormel:test-action \
+            --docker-custom-image-name pormel.azurecr.io/pormel:test-action.1.0 \
             --docker-registry-server-url https://pormel.azurecr.io
 
       - name: Restart Azure Web App

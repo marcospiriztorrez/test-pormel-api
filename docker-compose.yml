@@ -4,13 +4,13 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "7035:7035"
+      - "3001:3001"
     environment:
       DB_HOST: postgres
       DB_USER: pormel
       DB_PASSWORD: pormel1234
       DB_NAME: test_pormel
-      PORT: 7035
+      PORT: 3001
       ENV: development
     depends_on:
       - postgres
